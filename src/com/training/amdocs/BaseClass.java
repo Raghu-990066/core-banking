@@ -17,9 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.util.Random;
 
-public class BaseClass {
+
+public class BaseClass {//full
 
 	public static void main(String[] args) throws SQLException {
 		Scanner s=new Scanner(System.in);
@@ -34,7 +34,7 @@ public class BaseClass {
 
 			Connection con= DriverManager.getConnection(url,userName,password);
 //			#bank_base_user
-			//Statement st=con.createStatement();
+
 			if(con!=null) {
 				System.out.println("connected");
 			}
@@ -57,7 +57,7 @@ public class BaseClass {
 				System.out.println("Enter choice [1-5]");
 				user_choice=s.nextInt();
 				switch(user_choice) {
-				       case 1:
+				       case 1://case user creation
 				    	   System.out.println("Enter a customer name");
 				    	   String user_name=s.next();
 				    	   
@@ -66,14 +66,10 @@ public class BaseClass {
 				    	   
 				    	   System.out.println("Enter customer address");
 				    	   String user_address=s.next();
-				    	   
-//				    	   System.out.println("Enter customer Email address");
-//				    	   String ce=s.next();
+				    	
 				    	   System.out.println("Enetr a opening balance");
-				    	   double user_bal=s.nextDouble();				    	
-//			    	     
+				    	   double user_bal=s.nextDouble();				    				    	     
 			    	        Statement st1=con.createStatement();
-//			    	        ResultSet rs1=st1.executeQuery("select  *from Bankinfo1");
 			    	        ResultSet rs1=st1.executeQuery("SELECT * FROM (select acc_no from bank_base_user ORDER BY acc_no DESC) where rownum = 1 ");
 			    	       
 			    	        while(rs1.next()) {
@@ -100,13 +96,11 @@ public class BaseClass {
 									System.out.println("record inserted successfully and get an account number is  "+in_number);
 								else
 								  System.out.println("invalid insertion");
-							    }				    	   //int accountNum=k.openNewAccount(cn, d, ph, ca, ce);
-				               //ps1=con.prepareStatement("insert into Transactions1(CaccountNum,Balance,Modes)"+"values("+accountNum+","+d+",'Creation')");
-				    	   //System.out.println("Account created successfully and it has the following number:"+accountNum);
+							    }				    	  
 			    	        }
 				    	   break;
-				       case 2:
-				    	   //Connection con1 = null;
+				       case 2://case deposit
+				    	
 				    	    System.out.println("Enter a account number");
 			    	        int acc_no_deposit=s.nextInt();
 			    	       
@@ -127,7 +121,7 @@ public class BaseClass {
 			    	         break; 		
 			    	        			
 			    	      
-				       case 3://Connection con2=null;
+				       case 3://Case withdraw
 				    	   System.out.println("Enter a account number");
 		    	           int acc_no_withdraw=s.nextInt();
 		    	           System.out.println("Enter amount to withdraw");
@@ -147,20 +141,20 @@ public class BaseClass {
 			    	       rs3.close();
 		    	           break; 	
 				    	    
-				      case 4://Connection con4=null;
+				      case 4://Case bal
 				    	    System.out.println("Enter a account number");
-//			    	        int anum=s.nextInt();
+			    	        int anum=s.nextInt();
 			    	        Statement st=con.createStatement();
-			    	        ResultSet rs=st.executeQuery("select  *from bank_base_user");
+			    	        ResultSet rs=st.executeQuery("select  *from bank_base_user where acc_no ="+anum);
+			    	        
 			    	        while(rs.next()) {
 			    	        	System.out.println("User accountNumber : "+rs.getString(1)+"\n "+"User Name : "+rs.getString(2)+"\n "+"User Balance : "+rs.getString(5));
 			    	        }
 			    	        rs.close();
 			    	        break;
-			    	        //PreparedStatement ps3=con.prepareStatement("select *from Bankinfo1 where CaccoutNum=?");
-				       //case 5:
-				    	   //System.out.println("Balance amount");
-				       case 5:
+			    	        
+				       case 5://case exit
+				    	   System.out.println("Operation Terminated");
 				    	   System.exit(0);
 				}
 			}
