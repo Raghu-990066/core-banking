@@ -73,7 +73,7 @@ public class BaseClass {
 				    	   double user_bal=s.nextDouble();				    	
 //			    	     
 			    	        Statement st1=con.createStatement();
-//			    	        ResultSet rs1=st.executeQuery("select  *from Bankinfo1");
+//			    	        ResultSet rs1=st1.executeQuery("select  *from Bankinfo1");
 			    	        ResultSet rs1=st1.executeQuery("SELECT * FROM (select acc_no from bank_base_user ORDER BY acc_no DESC) where rownum = 1 ");
 			    	       
 			    	        while(rs1.next()) {
@@ -109,6 +109,7 @@ public class BaseClass {
 				    	   //Connection con1 = null;
 				    	    System.out.println("Enter a account number");
 			    	        int acc_no_deposit=s.nextInt();
+			    	       
 			    	        System.out.println("Enter amount to deposit");
 			    	        int user_bal_deposit=s.nextInt();
 					   
@@ -118,8 +119,9 @@ public class BaseClass {
 			    	        ps1.executeUpdate();
 			    	        Statement st2=con.createStatement();
 			    	        ResultSet rs2=st2.executeQuery("select account_bal from bank_base_user where acc_no="+acc_no_deposit);
+			    	        System.out.println("Account Number = " + acc_no_deposit);
 			    	        while(rs2.next()) {
-			    	        System.out.println("Balance:"+rs2.toString());
+			    	        System.out.println("Current Balance : "+rs2.getString(1));
 			    	        }
 			    	        rs2.close();
 			    	         break; 		
@@ -134,13 +136,20 @@ public class BaseClass {
 		    	           ps2.setInt(1, amt_withdraw);
 		    	           ps2.setInt(2, acc_no_withdraw);
 		    	           ps2.executeUpdate();
-		    	           //System.out.println("Balance:"+acc_no_withdraw);
-		    	         
+		    	           
+		    	           
+		    	           Statement st3=con.createStatement();
+			    	       ResultSet rs3=st3.executeQuery("select account_bal from bank_base_user where acc_no="+acc_no_withdraw);
+			    	       System.out.println("Account Number = " + acc_no_withdraw);
+			    	       while(rs3.next()) {
+			    	       System.out.println("Current Balance : "+rs3.getString(1));
+			    	       }
+			    	       rs3.close();
 		    	           break; 	
 				    	    
 				      case 4://Connection con4=null;
 				    	    System.out.println("Enter a account number");
-			    	        int anum=s.nextInt();
+//			    	        int anum=s.nextInt();
 			    	        Statement st=con.createStatement();
 			    	        ResultSet rs=st.executeQuery("select  *from bank_base_user");
 			    	        while(rs.next()) {
