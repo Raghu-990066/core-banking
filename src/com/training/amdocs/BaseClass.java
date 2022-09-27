@@ -99,7 +99,7 @@ public class BaseClass {//full
 								
 								int i=ps.executeUpdate();
 								if (i==1) {
-									System.out.println("record inserted successfully and get an account number is  "+in_number);
+									System.out.println("User Created successfully and User's account number is  "+in_number);
 									System.out.println("password is : "+pass);
 									System.out.println("PLEASE DO NOT SHARE PASSWORD WITH ANY ONE");
 								}
