@@ -1,15 +1,3 @@
-package com.training.amdocs;
-//import jdbc_conn
-//public class BaseClass {
-//	public static void main(String args[]) {
-//		System.out.println("hello world!!");
-//		System.out.println("th");
-//	}
-//
-//
-//}
-//package bankino;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
